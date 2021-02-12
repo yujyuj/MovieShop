@@ -17,7 +17,7 @@ namespace MovieShop.MVC.Controllers
         [HttpPost]
         public IActionResult Create(int id)
         {
-            return View();
+            return View( );
         }
 
         [HttpPost]
