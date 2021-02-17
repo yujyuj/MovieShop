@@ -26,13 +26,17 @@ namespace MovieShop.Infrastructure.Data
             // use Fluent API for entites. Action
             modelBuilder.Entity<Movie>(ConfigureMovie);
             modelBuilder.Entity<Trailer>(ConfigureTrailer);
+            modelBuilder.Entity<Movie>().HasMany(m => m.Genres).WithMany(g => g.Movies)
+                .UsingEntity<Dictionary<string, object>>("MovieGenre",
+                    m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
+                    g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
 
         }
         private void ConfigureMovie(EntityTypeBuilder<Movie> builder)
         {
             //rules for Movie table entity
-            builder.ToTable("Movie"); //We want name the table Movie
-            builder.HasKey(m => m.Id);
+            builder.ToTable("Movie");  //name the table Movie
+            builder.HasKey(m => m.Id); //set primary key
             builder.Property(m => m.Title).HasMaxLength(256);
             builder.Property(m => m.Overview).HasMaxLength(4096);
             builder.Property(m => m.Tagline).HasMaxLength(512);
@@ -49,8 +53,8 @@ namespace MovieShop.Infrastructure.Data
         private void ConfigureTrailer(EntityTypeBuilder<Trailer> builder)
         {
             //rules for Trailer
-            builder.ToTable("Trailer"); //name it Trailer
-            builder.HasKey(t => t.Id);
+            builder.ToTable("Trailer"); //name the table Trailer
+            builder.HasKey(t => t.Id);  //set primary key
             builder.Property(t => t.TrailerUrl).HasMaxLength(2084);
             builder.Property(t => t.Name).HasMaxLength(2084);
         }

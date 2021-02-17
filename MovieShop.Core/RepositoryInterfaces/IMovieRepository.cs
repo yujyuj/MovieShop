@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MovieShop.Core.RepositoryInterfaces
 {
-    public interface IMovieRepository
+    public interface IMovieRepository : IAsyncRepository<Movie>
     {
         IEnumerable<Movie> GetTopRevenueMovies();
         IEnumerable<Movie> GetHighestRatedMovies();

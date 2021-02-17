@@ -13,5 +13,8 @@ namespace MovieShop.Core.Entities
 
         [MaxLength(24)]
         public string Name { get; set; }
+
+        //navigation
+        public ICollection<Movie> Movies { get; set; }
     }
 }

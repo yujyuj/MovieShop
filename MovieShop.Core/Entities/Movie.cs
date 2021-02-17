@@ -25,8 +25,9 @@ namespace MovieShop.Core.Entities
         public string UpdatedBy { get; set; }
         public string CreatedBy { get; set; }
 
-
         //navigation properties
         public ICollection<Trailer> Trailers { get; set; }
+        public ICollection<Genre> Genres { get; set; }
+
     }
 }

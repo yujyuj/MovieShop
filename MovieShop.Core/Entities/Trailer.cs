@@ -11,7 +11,7 @@ namespace MovieShop.Core.Entities
         public string TrailerUrl { get; set; }
         public string Name { get; set; }
 
-        //a trialer belongs to one movie
+        //Navigation Property. A trialer belongs to one movie
         public Movie Movie { get; set; }
     }
 }
