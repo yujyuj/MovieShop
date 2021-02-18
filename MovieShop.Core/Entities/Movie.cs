@@ -29,5 +29,11 @@ namespace MovieShop.Core.Entities
         public ICollection<Trailer> Trailers { get; set; }
         public ICollection<Genre> Genres { get; set; }
 
+        //public ICollection<Cast> Casts { get; set; }
+        public ICollection<MovieCast> MovieCasts { get; set; }
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Purchase> Purchases { get; set; }
+        public ICollection<Favorite> Fevorites { get; set; }
+
     }
 }
