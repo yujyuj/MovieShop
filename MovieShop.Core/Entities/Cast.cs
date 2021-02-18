@@ -14,7 +14,6 @@ namespace MovieShop.Core.Entities
 
 
         //navigation properties
-        //public ICollection<Movie> Movies { get; set; }
         public ICollection<MovieCast> MovieCasts { get; set; }
     }
 }
