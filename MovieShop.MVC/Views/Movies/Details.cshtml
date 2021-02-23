@@ -1,3 +1,97 @@
-﻿<h1>
-    movie details page
-</h1>
+﻿@model MovieShop.Core.Models.Response.MovieDetailsResponseModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+@* ------------  the whole image part ------------------------*@
+<div class="bg-image" style="background-image:url(@Model.BackdropUrl)">
+
+    <div class="row">
+
+
+        @*movie poster*@
+        <div class="col-md-3 offset-2">
+            <div>
+                <img src=@Model.PosterUrl class="card-img-top" />
+            </div>
+        </div>
+
+
+        @*movie title*@
+        <div class="old-md-4">
+            <div class="row mt-2">
+                <div class="col-12">
+                    <h1 class="text-white">
+                        @Model.Title
+                    </h1>
+                    <small class="text-muted"> @Model.Tagline </small>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+@* ------------  the top image part ------------------------*@
+
+
+
+@* ------------  the MOVIE FACTS part ------------------------*@
+<div class="row mt-4">
+    <div>
+        <h5>MOVIE FACTS</h5>
+    </div>
+    <hr />
+
+    <ul class="list-group">
+        <li class="list-group-item justify-content-between">
+            Release Date
+            <span class="badge badge-default badge-pill">@Model.ReleaseDate</span>
+        </li>
+        <li class="list-group-item justify-content-between">
+            Run Time
+            <span class="badge badge-default badge-pill">@Model.RunTime</span>
+        </li>
+        <li class="list-group-item justify-content-between">
+            Box Office
+            <span class="badge badge-default badge-pill">@Model.RunTime</span>
+        </li>
+        <li class="list-group-item justify-content-between">
+            Budget
+            <span class="badge badge-default badge-pill">@Model.Budget</span>
+        </li>
+    </ul>
+
+
+
+</div>
+@* ------------  the MOVIE FACTS part ------------------------*@
+
+
+
+
+
+@* ------------  the CAST part ------------------------*@
+<div class="row mt-8">
+    <div>
+        <h5>CAST</h5>
+    </div>
+    <div>
+        @foreach(var cast in Model.Casts)
+        {
+            <img src="@cast.ProfilePath" />
+        }
+
+    </div>
+</div>
+@* ------------  the CAST part ------------------------*@

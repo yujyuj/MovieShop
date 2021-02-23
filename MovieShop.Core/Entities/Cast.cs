@@ -12,7 +12,6 @@ namespace MovieShop.Core.Entities
         public string TmdbUrl { get; set; }
         public string ProfilePath { get; set; }
 
-
         //navigation properties
         public ICollection<MovieCast> MovieCasts { get; set; }
     }

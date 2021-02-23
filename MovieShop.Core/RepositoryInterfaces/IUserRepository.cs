@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace MovieShop.Core.RepositoryInterfaces
 {
-    public interface IMovieRepository : IAsyncRepository<Movie>
+    public interface IUserRepository : IAsyncRepository<User>
     {
-        Task<IEnumerable<Movie>> GetTopRevenueMovies();
-        Task<IEnumerable<Movie>> GetHighestRatedMovies();
+        Task<User> GetUserByEmail(string email);
     }
 }

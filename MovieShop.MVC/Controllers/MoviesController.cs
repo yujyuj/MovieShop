@@ -25,20 +25,18 @@ namespace MovieShop.MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Details()  //IActionResult ???
+        public async Task<IActionResult> Details(int id)
         {
-            //Without parameter, it renders Details.cshtml by default.
-            return View();
-
+            //Without passing in parameter to view(), it renders Details.cshtml by default.
             //specify which view to render. testing.cshtml
             //return View("testing");
-        }
 
-        [HttpGet]
-        public IActionResult TopRevenueMovies()
-        {
-            var movies = _movieService.GetHighestGrossingMovies();
-            return View(movies);
+
+            //call MovieService that will call MovieRepository
+            var movieDetails = await _movieService.GetMovieById(id); //MovieDetailsResponseModel
+            return View(movieDetails);
+
+            
         }
 
         [HttpGet]

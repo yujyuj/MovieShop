@@ -46,12 +46,6 @@ namespace MovieShop.Infrastructure.Data
                     m => m.HasOne<Genre>().WithMany().HasForeignKey("GenreId"),
                     g => g.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
 
-            // Movie many <-> Cast many
-            //modelBuilder.Entity<Movie>().HasMany(m => m.Casts).WithMany(c => c.Movies)
-            //    .UsingEntity<Dictionary<string, object>>("MovieCast",
-            //        m => m.HasOne<Cast>().WithMany().HasForeignKey("CastId"),
-            //        c => c.HasOne<Movie>().WithMany().HasForeignKey("MovieId"));
-
             // User many <-> Role many
             modelBuilder.Entity<User>().HasMany(u => u.Roles).WithMany(r => r.Users)
                 .UsingEntity<Dictionary<string, object>>("UserRole",

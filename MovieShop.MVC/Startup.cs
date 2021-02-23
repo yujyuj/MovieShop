@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
+using MovieShop.Core.Entities;
 using MovieShop.Core.RepositoryInterfaces;
 using MovieShop.Core.ServiceInterfaces;
 using MovieShop.Infrastructure.Data;
@@ -33,6 +33,13 @@ namespace MovieShop.MVC
             services.AddControllersWithViews();
             services.AddTransient<IMovieService, MovieService>();
             services.AddTransient<IMovieRepository, MovieRepository>();
+            services.AddTransient<IGenreService, GenreService>();
+            services.AddTransient<IAsyncRepository<Genre>, EfRepository<Genre>>();
+
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICryptoService, CryptoService>();
+
 
             services.AddDbContext<MovieShopDbContext>(option =>
                 option.UseSqlServer(Configuration.GetConnectionString("MovieShopDbConnection")));

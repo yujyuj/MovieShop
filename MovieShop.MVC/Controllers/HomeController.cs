@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MovieShop.Core.ServiceInterfaces;
 using MovieShop.MVC.Models;
 
 namespace MovieShop.MVC.Controllers
@@ -12,15 +13,19 @@ namespace MovieShop.MVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IMovieService _movieService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IMovieService movieService)
         {
             _logger = logger;
+            _movieService = movieService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            // get movies from movieService and send the list to the view using model
+            var topMovies = await _movieService.GetTop25topGrossingMovies();  // List<MovieCardResponseModel> of 25       
+            return View(topMovies); //send the object to view
         }
 
         public IActionResult Privacy()
