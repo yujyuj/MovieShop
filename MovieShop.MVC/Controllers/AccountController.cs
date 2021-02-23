@@ -51,6 +51,7 @@ namespace MovieShop.MVC.Controllers
             {
                 new Claim(ClaimTypes.Name, user.Email),
                 new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
                 new Claim(ClaimTypes.DateOfBirth, user.DateOfBirth.Value.ToShortDateString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             };
@@ -68,6 +69,18 @@ namespace MovieShop.MVC.Controllers
         {
             return View();
         }
+
+
+        public async Task<IActionResult> Logout()
+        {
+            //log out delete the cookies
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+
+
+
+
         [HttpPost]
         public async Task<IActionResult> Register(UserRegisterRequestModel requestModel)
         {
